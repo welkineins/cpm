@@ -1,10 +1,11 @@
 from command import Command
 
 class HelloCommand(Command):
+    name = "hello"
+    description = "Say hello to your name."
+    
     def initializeParser(self, parser):
-        parser.add_argument('-v', '--version', action='version', version="3.x")
-        parser.add_argument('-b')
+        parser.add_argument('name', default='Jack')
     
     def run(self, options, args):
-        print("hellooooo~~~~")
-        print(args.b)
+        print("hello " + args.name)

@@ -1,6 +1,10 @@
 import argparse
 
 class Command(object):
+    name = ""
+    description = ""
+    aliases = []
+
     def __init__(self, parser):
         self.parser = parser
         self.initializeParser(parser)

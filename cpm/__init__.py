@@ -17,16 +17,14 @@ def main(args):
     options = []
     parser = initializeParser(args, commands)
     parsed_args = parser.parse_args(args)
-
-    if not parsed_args.func:
-        return parser.print_usage()
-
-    return parsed_args.func(options, parsed_args)
+    return parsed_args.cmd_callback(options, parsed_args)
 
 def initializeParser(args, commands):
     parser = argparse.ArgumentParser(prog=prog, description=description, epilog=epilog)
-    parser.add_argument('-v', '--version', action='version', version=version)
-    parser.set_defaults(func=None)
+    parser.add_argument('--version', action='version', version=version)
+    parser.add_argument('--debug', action='store_true', help='Enable debug mode')
+    parser.add_argument('--verbose', '-v', action='count', help='Enable verbose output, upto -vvv')
+    parser.set_defaults(cmd_callback=lambda o, a: parser.print_usage())
     
     if commands.__all__:
         sub_parsers = parser.add_subparsers(title='valid commands', metavar='command')

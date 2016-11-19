@@ -8,7 +8,7 @@ class Command(object):
     def __init__(self, parser):
         self.parser = parser
         self.initializeParser(parser)
-        self.parser.set_defaults(func=self.run)
+        self.parser.set_defaults(cmd_callback=self.run)
 
     def initializeParser(self, parser):
         raise NotImplementedError( "Should have implemented this" )
